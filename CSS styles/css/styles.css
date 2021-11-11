@@ -16,7 +16,9 @@ body {
   max-width: 1280px;
 }
 
-/*HEADER*/
+/*=================*/
+/*===== HEADER=====*/
+/*=================*/
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -35,7 +37,13 @@ header .container {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
   margin: 0 auto;
+  padding: 0 20px;
+}
+
+nav {
+  padding-right: 120px;
 }
 
 nav ul {
@@ -51,9 +59,168 @@ ul {
 li a {
   color: #fff;
   text-decoration: none;
+  padding-right: 70px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.client span {
+  color: #fff;
+  padding-right: 20px;
 }
 
 .logo {
   color: #fff;
   font-size: 24px;
+}
+
+/*================*/
+/*===== TABS =====*/
+/*================*/
+.tabs {
+  background-color: #2d9cdb;
+}
+
+.tabs .container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+}
+
+.tabs_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 120px;
+  cursor: pointer;
+}
+
+.tabs_item .fas {
+  font-size: 50px;
+  color: #fff;
+}
+
+.tabs_item.active {
+  background-color: #2f80ed;
+  border-bottom: 8px solid #fff;
+}
+
+.tabs_item span {
+  color: #fff;
+}
+
+.tabs_item:hover {
+  background-color: #2f80ed;
+  border-bottom: 8px solid #fff;
+}
+
+.hamburger {
+  display: none;
+}
+
+/*=================*/
+/*===== MEDIA =====*/
+/*=================*/
+@media (min-width: 1280px) {
+  header .container {
+    padding: 0;
+  }
+}
+
+@media (max-width: 1279px) {
+  header .container {
+    padding: 0 25px;
+  }
+}
+
+@media (max-width: 1150px) {
+  nav {
+    padding-right: 0;
+  }
+  li a {
+    padding-right: 50px;
+  }
+}
+
+@media (max-width: 940px) {
+  header .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+  }
+  .client {
+    margin: 0 0 0 auto;
+  }
+  nav {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    padding-right: 36px;
+  }
+  .hamburger_layer {
+    display: block;
+    width: 40px;
+    background-color: #fff;
+    height: 4px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .hamburger_layer::before, .hamburger_layer::after {
+    content: "";
+    display: block;
+    background-color: #fff;
+    width: 100%;
+    height: 4px;
+    border: 1px solid #fff;
+    border-radius: 3px;
+  }
+  .hamburger_layer::before {
+    -webkit-transform: translateY(9px);
+        -ms-transform: translateY(9px);
+            transform: translateY(9px);
+  }
+  .hamburger_layer::after {
+    -webkit-transform: translateY(-13px);
+        -ms-transform: translateY(-13px);
+            transform: translateY(-13px);
+  }
+}
+
+@media (max-width: 600px) {
+  .logo {
+    font-size: 16px;
+  }
+  .tabs_item .fas {
+    font-size: 35px;
+  }
+  .client span {
+    display: none;
+  }
+}
+
+@media (max-width: 370px) {
+  .tabs_item span {
+    display: none;
+  }
+  .client img {
+    display: none;
+  }
 }
