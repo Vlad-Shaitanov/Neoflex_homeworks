@@ -61,9 +61,18 @@ a {
 }
 
 .client {
+	display: flex;
+
 	& span {
 		color: #fff;
 		padding-right: 20px;
+		vertical-align: middle;
+		align-self: center;
+	}
+
+	img {
+		width: 50px;
+		border-radius: 50%;
 	}
 }
 
@@ -164,13 +173,15 @@ a {
 	}
 
 	.hamburger {
-		display: block;
+		display: flex;
+		height: 40px;
 		cursor: pointer;
 		padding-right: 36px;
 	}
 
 	.hamburger_layer {
 		display: block;
+		margin: auto;
 		width: 40px;
 		background-color: #fff;
 		height: 4px;
@@ -205,7 +216,7 @@ a {
 
 	.tabs_item {
 		& .fas {
-			font-size: 35px;
+			font-size: 30px;
 		}
 	}
 
