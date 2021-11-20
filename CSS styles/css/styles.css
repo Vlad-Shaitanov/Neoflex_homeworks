@@ -225,14 +225,17 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  /*grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));*/
+  /*Автозаполнение*/
+  /*grid-auto-rows: 1fr;*/
   justify-self: stretch;
   margin-bottom: 20px;
   padding: 0 15px 0;
 }
 
 .card_item {
-  -webkit-box-shadow: 0 0 5px #2f80ed;
-          box-shadow: 0 0 5px #2f80ed;
+  -webkit-box-shadow: 0 0 10px #2f80ed;
+          box-shadow: 0 0 10px #2f80ed;
 }
 
 .card_body {
@@ -366,6 +369,117 @@ a:hover {
   color: #2f80ed;
 }
 
+.content_row3 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[12];
+      grid-template-columns: repeat(12, 1fr);
+}
+
+.table_wrap {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 6;
+  grid-column: 1 / 7;
+}
+
+.table_grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[12];
+      grid-template-columns: repeat(12, 1fr);
+  margin-bottom: 30px;
+  /*grid-template-rows: repeat(11, 1fr);*/
+}
+
+.table_grid .col1, .table_grid .col2, .table_grid .col3 {
+  grid-column: span 4;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[11];
+      grid-template-rows: repeat(11, 1fr);
+  border: 1px solid #2f80ed;
+}
+
+.table_grid .col1 .row1, .table_grid .col2 .row1, .table_grid .col3 .row1 {
+  /*grid-row: 1 / 2;*/
+  padding: 10px;
+  background-color: #2f80ed;
+  color: #fff;
+  text-align: center;
+}
+
+.table_grid .col1 .row2, .table_grid .col2 .row2, .table_grid .col3 .row2,
+.table_grid .col1 .row3,
+.table_grid .col2 .row3,
+.table_grid .col3 .row3,
+.table_grid .col1 .row4,
+.table_grid .col2 .row4,
+.table_grid .col3 .row4,
+.table_grid .col1 .row5,
+.table_grid .col2 .row5,
+.table_grid .col3 .row5,
+.table_grid .col1 .row6,
+.table_grid .col2 .row6,
+.table_grid .col3 .row6,
+.table_grid .col1 .row7,
+.table_grid .col2 .row7,
+.table_grid .col3 .row7,
+.table_grid .col1 .row8,
+.table_grid .col2 .row8,
+.table_grid .col3 .row8,
+.table_grid .col1 .row9,
+.table_grid .col2 .row9,
+.table_grid .col3 .row9,
+.table_grid .col1 .row10,
+.table_grid .col2 .row10,
+.table_grid .col3 .row10,
+.table_grid .col1 .row11,
+.table_grid .col2 .row11,
+.table_grid .col3 .row11 {
+  /*text-align: center;*/
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+
+.table_grid .col1 .row3,
+.table_grid .col2 .row3,
+.table_grid .col3 .row3,
+.table_grid .col1 .row5,
+.table_grid .col2 .row5,
+.table_grid .col3 .row5,
+.table_grid .col1 .row7,
+.table_grid .col2 .row7,
+.table_grid .col3 .row7,
+.table_grid .col1 .row9,
+.table_grid .col2 .row9,
+.table_grid .col3 .row9,
+.table_grid .col1 .row11,
+.table_grid .col2 .row11,
+.table_grid .col3 .row11 {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.table_grid .col2 {
+  -ms-grid-column: 5;
+  -ms-grid-column-span: 4;
+  grid-column: 5 / 9;
+}
+
+.table_grid .col3 {
+  -ms-grid-column: 9;
+  -ms-grid-column-span: 4;
+  grid-column: 9 / 13;
+}
+
 /*=================*/
 /*===== MEDIA =====*/
 /*=================*/
@@ -378,6 +492,12 @@ a:hover {
 @media (max-width: 1279px) {
   header .container {
     padding: 0 25px;
+  }
+  .table_grid,
+  .pagination,
+  .select_item,
+  .table {
+    margin-left: 15px;
   }
 }
 
