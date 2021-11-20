@@ -8,6 +8,23 @@
 }
 
 $main-color: #2f80ed;
+@mixin cell-align {
+	@for $i from 2 through 11 {
+		.row#{$i} {
+			padding: 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+}
+@mixin row-bg {
+	@each $rownum in (3, 5, 7, 9, 11) {
+		.row#{$rownum} {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+	}
+}
 
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -344,30 +361,9 @@ a {
 			color: #fff;
 			text-align: center;
 		}
-		.row2,
-		.row3,
-		.row4,
-		.row5,
-		.row6,
-		.row7,
-		.row8,
-		.row9,
-		.row10,
-		.row11 {
-			/*text-align: center;*/
-			padding: 5px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
 
-		.row3,
-		.row5,
-		.row7,
-		.row9,
-		.row11 {
-			background-color: rgba(0, 0, 0, 0.1);
-		}
+		@include cell-align;
+		@include row-bg;
 	}
 	.col2 {
 		grid-column: 5 / 9;
