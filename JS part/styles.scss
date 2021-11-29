@@ -103,41 +103,67 @@ a {
 /*================*/
 /*===== TABS =====*/
 /*================*/
-.tabs {
+.tabs_wrapper {
 	background-color: #2d9cdb;
-
-	& .container {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+	.container {
 		margin: 0 auto;
-		align-items: baseline; /*От прыжков в табах*/
+	}
+}
+
+.tabs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin: 0 auto;
+	align-items: baseline; /*От прыжков в табах*/
+
+	&_item {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		min-height: 120px;
+		cursor: pointer;
+
+		& .fas {
+			font-size: 50px;
+			color: #fff;
+		}
+		// &.active {
+		// 	background-color: $main-color;
+		// 	border-bottom: 8px solid #fff;
+		// }
+
+		& span {
+			color: #fff;
+		}
+
+		&:hover {
+			background-color: $main-color;
+			border-bottom: 8px solid #fff;
+		}
 	}
 }
 
 .tabs_item {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-	min-height: 120px;
-	cursor: pointer;
-
-	& .fas {
-		font-size: 50px;
-		color: #fff;
-	}
 	&.active {
 		background-color: $main-color;
 		border-bottom: 8px solid #fff;
 	}
+}
 
-	& span {
-		color: #fff;
+.tabs_content {
+	display: flex;
+	justify-content: center;
+	background-color: $main-color;
+	color: #fff;
+	font-size: 25px;
+	padding: 10px 0;
+
+	&.hide {
+		display: none;
 	}
-
-	&:hover {
-		background-color: $main-color;
-		border-bottom: 8px solid #fff;
+	&.show {
+		display: flex;
 	}
 }
 

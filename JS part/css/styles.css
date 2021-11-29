@@ -95,11 +95,15 @@ a:hover {
 /*================*/
 /*===== TABS =====*/
 /*================*/
-.tabs {
+.tabs_wrapper {
   background-color: #2d9cdb;
 }
 
-.tabs .container {
+.tabs_wrapper .container {
+  margin: 0 auto;
+}
+
+.tabs {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
@@ -133,11 +137,6 @@ a:hover {
   color: #fff;
 }
 
-.tabs_item.active {
-  background-color: #2f80ed;
-  border-bottom: 8px solid #fff;
-}
-
 .tabs_item span {
   color: #fff;
 }
@@ -145,6 +144,34 @@ a:hover {
 .tabs_item:hover {
   background-color: #2f80ed;
   border-bottom: 8px solid #fff;
+}
+
+.tabs_item.active {
+  background-color: #2f80ed;
+  border-bottom: 8px solid #fff;
+}
+
+.tabs_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #2f80ed;
+  color: #fff;
+  font-size: 25px;
+  padding: 10px 0;
+}
+
+.tabs_content.hide {
+  display: none;
+}
+
+.tabs_content.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .hamburger {
