@@ -311,6 +311,14 @@ a:hover {
   width: 50%;
 }
 
+.icon_liked {
+  fill: red;
+}
+
+.icon_unliked {
+  fill: white;
+}
+
 .card_item {
   display: -ms-grid;
   display: grid;

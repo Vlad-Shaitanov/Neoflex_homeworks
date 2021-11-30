@@ -2,12 +2,15 @@
 
 window.addEventListener("DOMContentLoaded", () => {
 
+	const tabsPanel = document.querySelector(".tabs"),
+		tabs = document.querySelectorAll(".tabs_item"),
+		tabsContent = document.querySelectorAll(".tabs_content"),
+		likeButtons = document.querySelectorAll(".card_body_img");
+
+
 	/*================*/
 	/*===== TABS =====*/
 	/*================*/
-	const tabsPanel = document.querySelector(".tabs"),
-		tabs = document.querySelectorAll(".tabs_item"),
-		tabsContent = document.querySelectorAll(".tabs_content");
 
 	const hideTab = (num) => {
 
@@ -51,5 +54,33 @@ window.addEventListener("DOMContentLoaded", () => {
 				}
 			}
 		}
+	});
+
+
+	/*=============================*/
+	/*===== Toggling of icons =====*/
+	/*=============================*/
+
+
+	likeButtons.forEach(item => {
+
+		item.addEventListener("click", (event) => {
+
+			const target = event.target.closest(".card_body_img");
+			const icon = target.querySelector("svg");
+
+			if (target && icon.classList.contains("icon_unliked")) {
+
+				icon.classList.remove("icon_unliked");
+				icon.classList.add("icon_liked");
+
+			} else if (icon.classList.contains("icon_liked")) {
+
+				icon.classList.remove("icon_liked");
+				icon.classList.add("icon_unliked");
+
+			}
+
+		});
 	});
 });

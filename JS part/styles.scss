@@ -291,8 +291,21 @@ a {
 
 		.like {
 			width: 50%;
+			// &.liked {
+			// 	fill: red;
+			// }
+			// & .unliked {
+			// 	fill: white;
+			// }
 		}
 	}
+}
+
+.icon_liked {
+	fill: red;
+}
+.icon_unliked {
+	fill: white;
 }
 
 .card_item {
