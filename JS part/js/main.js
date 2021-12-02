@@ -108,54 +108,28 @@ window.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 
-	/*====================*/
-	/*===== Selector =====*/
-	/*====================*/
-	const select = document.querySelector("#select"),
-		rows = document.querySelectorAll(".row1"),
-		table = document.querySelector(".table_grid");
-
-	select.addEventListener("change", (event) => {
-		console.log(event.target.value);
-		console.log("Rows", rows);
-
-
-		rows.forEach(item => {
-			if (!item.classList.contains("head")) {
-				item.remove();
-				console.log("Deleted");
-			}
-		});
-
-		for (let i = 0; i < event.target.value; i++) {
-
-			table.insertAdjacentHTML("beforeend", `
-				<div class="row1">
-					<div class="col1">${data[i].position}</div>
-					<div class="col2">${data[i].location}</div>
-					<div class="col3">${data[i].price}</div>
-				</div>	
-			`);
-		}
-	});
 
 	/*======================*/
 	/*===== Pagination =====*/
 	/*======================*/
 
+
+	const leftArrow = document.querySelector(".arrow_left"),
+		rightArrow = document.querySelector(".arrow_right"),
+		table = document.querySelector(".table_grid"),
+		paginationItems = document.querySelector(".pagination_items"),
+		pages = paginationItems.querySelectorAll("li");
+
 	let currentPage = 1;
-	let recordsOnPage = 10;
+	let recordsOnPage = 5;
 	const rowsLength = data.length;
+
 
 	const numPages = () => {
 		return Math.ceil((rowsLength - 1) / recordsOnPage);
 	}
 
 	const changePage = (page) => {
-		const leftArrow = document.querySelector(".arrow_left"),
-			rightArrow = document.querySelector(".arrow_right"),
-			table = document.querySelector(".table_grid"),
-			rowBody = document.querySelectorAll(".row_body");
 
 		leftArrow.addEventListener("click", prevPage);
 		rightArrow.addEventListener("click", nextPage);
@@ -163,7 +137,22 @@ window.addEventListener("DOMContentLoaded", () => {
 		if (page < 1) page = 1;
 		if (page > numPages()) page = numPages();
 
-		data.map(row => {
+
+		let startItem = currentPage == 1 ? 0 : (currentPage - 1) * recordsOnPage;
+		let endItem = startItem + recordsOnPage;
+
+		let dataToShow = data.slice(startItem, endItem);
+		console.log("ShownData", dataToShow);
+
+		[...table.querySelectorAll(".row_body")].forEach(row => {
+			row.remove();
+		});
+		[...paginationItems.querySelectorAll("li")].forEach(li => {
+			li.remove();
+		});
+
+		dataToShow.map(row => {
+
 			table.insertAdjacentHTML("beforeend", `
 				<div class="row1 row_body">
 					<div class="col1">${row.position}</div>
@@ -173,29 +162,23 @@ window.addEventListener("DOMContentLoaded", () => {
 			`);
 		});
 
-		[...table.querySelectorAll(".row_body")].forEach(row => {
-			row.style.display = "none";
-		});
+		for (let i = 1; i <= numPages(); i++) {
+			paginationItems.insertAdjacentHTML("beforeend", `
+				<li class=${i === currentPage ? "pagination_selected" : ""}>${i}</li>
+			`);
 
-
-		let startItem = currentPage * recordsOnPage;
-		let endItem = startItem + recordsOnPage;
-
-		let dataToShow = data.slice(startItem, endItem);
-		console.log("Shonwdata", dataToShow);
-
-
-		dataToShow.map((row, indx) => {
-			// row.style.display = "";
-			// table.querySelector(".row_body")[row];
-			// [...rowBody].forEach((item, i) => {
-			// 	item.style.display = "grid";
-			// });
-			// [...rowBody].
-			// console.log("Map", [...rowBody][indx]);
-		});
+		}
 
 	};
+
+	paginationItems.addEventListener("click", event => {
+		const newPage = event.target.innerHTML;
+		currentPage = newPage;
+
+		changePage(newPage);
+		event.target.classList.add("pagination_selected");
+	});
+
 
 	function prevPage() {
 
@@ -217,5 +200,29 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	}
 
+	// function changeRows(value) {
+
+
+	// 	return recordsOnPage = value;
+	// }
+
 	changePage(currentPage);
+
+
+	/*====================*/
+	/*===== Selector =====*/
+	/*====================*/
+
+	let select = document.querySelector("#select");
+
+	select.addEventListener("change", (event) => {
+		// let selectValue = event.target.value;
+
+		// changeRows(selectValue);
+
+		// changePage(currentPage);
+
+	});
+	// console.log("select", changeRows());
+
 });
