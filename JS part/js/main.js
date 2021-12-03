@@ -117,11 +117,10 @@ window.addEventListener("DOMContentLoaded", () => {
 	const leftArrow = document.querySelector(".arrow_left"),
 		rightArrow = document.querySelector(".arrow_right"),
 		table = document.querySelector(".table_grid"),
-		paginationItems = document.querySelector(".pagination_items"),
-		pages = paginationItems.querySelectorAll("li");
+		paginationItems = document.querySelector(".pagination_items");
 
 	let currentPage = 1;
-	let recordsOnPage = 5;
+	let recordsOnPage = 10;
 	const rowsLength = data.length;
 
 
@@ -142,7 +141,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		let endItem = startItem + recordsOnPage;
 
 		let dataToShow = data.slice(startItem, endItem);
-		console.log("ShownData", dataToShow);
+		// console.log("ShownData", dataToShow);
 
 		[...table.querySelectorAll(".row_body")].forEach(row => {
 			row.remove();
@@ -200,11 +199,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	}
 
-	// function changeRows(value) {
-
-
-	// 	return recordsOnPage = value;
-	// }
+	function changeRows(value) {
+		recordsOnPage = +value;
+	}
 
 	changePage(currentPage);
 
@@ -216,13 +213,11 @@ window.addEventListener("DOMContentLoaded", () => {
 	let select = document.querySelector("#select");
 
 	select.addEventListener("change", (event) => {
-		// let selectValue = event.target.value;
+		let selectValue = event.target.value;
+		changeRows(selectValue);
 
-		// changeRows(selectValue);
-
-		// changePage(currentPage);
+		changePage(currentPage = 1);
 
 	});
-	// console.log("select", changeRows());
 
 });
