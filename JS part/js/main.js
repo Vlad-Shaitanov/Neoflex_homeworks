@@ -1,35 +1,97 @@
 "use strict";
 
-const data = [
-	{ position: "some pos#1", location: "some pos#1", price: "some pos#1" },
-	{ position: "some pos#2", location: "some pos#2", price: "some pos#2" },
-	{ position: "some pos#3", location: "some pos#3", price: "some pos#3" },
-	{ position: "some pos#4", location: "some pos#4", price: "some pos#4" },
-	{ position: "some pos#5", location: "some pos#5", price: "some pos#5" },
-	{ position: "some pos#6", location: "some pos#6", price: "some pos#6" },
-	{ position: "some pos#7", location: "some pos#7", price: "some pos#7" },
-	{ position: "some pos#8", location: "some pos#8", price: "some pos#8" },
-	{ position: "some pos#9", location: "some pos#9", price: "some pos#9" },
-	{ position: "some pos#10", location: "some pos#10", price: "some pos#10" },
-	{ position: "some pos#11", location: "some pos#11", price: "some pos#11" },
-	{ position: "some pos#12", location: "some pos#12", price: "some pos#12" },
-	{ position: "some pos#13", location: "some pos#13", price: "some pos#13" },
-	{ position: "some pos#14", location: "some pos#14", price: "some pos#14" },
-	{ position: "some pos#15", location: "some pos#15", price: "some pos#15" },
-	{ position: "some pos#16", location: "some pos#16", price: "some pos#16" },
-	{ position: "some pos#17", location: "some pos#17", price: "some pos#17" },
-	{ position: "some pos#18", location: "some pos#18", price: "some pos#18" },
-	{ position: "some pos#19", location: "some pos#19", price: "some pos#19" },
-	{ position: "some pos#20", location: "some pos#20", price: "some pos#20" }
-
-];
 
 window.addEventListener("DOMContentLoaded", () => {
 
 	const tabsPanel = document.querySelector(".tabs"),
 		tabs = document.querySelectorAll(".tabs_item"),
 		tabsContent = document.querySelectorAll(".tabs_content"),
-		likeButtons = document.querySelectorAll(".card_body_img");
+
+		cardsBlock = document.querySelector(".cards");
+
+	let users = [];
+
+
+	const getCharacters = async () => {
+		const response = await fetch("https://randomuser.me/api/?results=25");
+		let characters = await response.json();
+
+		const fetchedUsers = [...characters.results];
+
+		fetchedUsers.map(item => {
+			users.push(item);
+		});
+
+		changePage(1);
+	};
+	getCharacters();
+
+
+	const getCards = async () => {
+		const req = await fetch("https://jsonplaceholder.typicode.com/posts/1/comments");
+		const cards = await req.json();
+
+		return cards;
+	};
+
+
+	/*=================*/
+	/*===== Cards =====*/
+	/*=================*/
+
+	const createCards = async () => {
+		const cards = await getCards();
+
+		cards.map((item, ind) => {
+			cardsBlock.insertAdjacentHTML("beforeend", `
+				<div class="card_item">
+					<img src="https://ucare.timepad.ru/599fab4c-51ee-46d6-bafa-0456510ab487/poster_event_1501201.jpg"
+						alt="img${ind}">
+					<div class="card_body">
+						<p class="card_body_title">${item.name}</p>
+						
+						<div class="card_body_date">17.11.21</div>
+						<div class="card_body_img">
+							<svg class="like icon_unliked" width="15" height="15" viewBox="0 0 15 15"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M13.544 0.979025C11.9386 -0.513489 9.55096 -0.245028 8.07735 1.41368L7.50022 2.06246L6.92308 1.41368C5.4524 -0.245028 3.06182 -0.513489 1.45639 0.979025C-0.383422 2.69206 -0.4801 5.76658 1.16635 7.62343L6.83519 14.009C7.20139 14.4212 7.79611 14.4212 8.16231 14.009L13.8311 7.62343C15.4805 5.76658 15.3839 2.69206 13.544 0.979025Z" />
+							</svg>
+						</div>
+						<p class="card_body_text">${item.body}
+						</p>
+					</div>
+					<button type="button" class="card_item_button">Read More</button>
+				</div>
+			`);
+		});
+
+		const likeButtons = document.querySelectorAll(".card_body_img");
+
+		likeButtons.forEach(item => {
+
+			item.addEventListener("click", (event) => {
+
+				const target = event.target.closest(".card_body_img");
+				const icon = target.querySelector("svg");
+
+				if (target && icon.classList.contains("icon_unliked")) {
+
+					icon.classList.remove("icon_unliked");
+					icon.classList.add("icon_liked");
+
+				} else if (icon.classList.contains("icon_liked")) {
+
+					icon.classList.remove("icon_liked");
+					icon.classList.add("icon_unliked");
+
+				}
+
+			});
+		});
+	};
+
+	createCards();
 
 
 	/*================*/
@@ -81,33 +143,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 
-	/*=============================*/
-	/*===== Toggling of icons =====*/
-	/*=============================*/
-
-
-	likeButtons.forEach(item => {
-
-		item.addEventListener("click", (event) => {
-
-			const target = event.target.closest(".card_body_img");
-			const icon = target.querySelector("svg");
-
-			if (target && icon.classList.contains("icon_unliked")) {
-
-				icon.classList.remove("icon_unliked");
-				icon.classList.add("icon_liked");
-
-			} else if (icon.classList.contains("icon_liked")) {
-
-				icon.classList.remove("icon_liked");
-				icon.classList.add("icon_unliked");
-
-			}
-
-		});
-	});
-
 
 	/*======================*/
 	/*===== Pagination =====*/
@@ -121,14 +156,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	let currentPage = 1;
 	let recordsOnPage = 10;
-	const rowsLength = data.length;
+	let rowsLength = users.length;
 
 
 	const numPages = () => {
 		return Math.ceil((rowsLength - 1) / recordsOnPage);
-	}
+	};
+	// numPages();
 
-	const changePage = (page) => {
+	function changePage(page) {
+
+		rowsLength = users.length;
 
 		leftArrow.addEventListener("click", prevPage);
 		rightArrow.addEventListener("click", nextPage);
@@ -140,7 +178,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		let startItem = currentPage == 1 ? 0 : (currentPage - 1) * recordsOnPage;
 		let endItem = startItem + recordsOnPage;
 
-		let dataToShow = data.slice(startItem, endItem);
+		let dataToShow = users.slice(startItem, endItem);
 		// console.log("ShownData", dataToShow);
 
 		[...table.querySelectorAll(".row_body")].forEach(row => {
@@ -150,13 +188,13 @@ window.addEventListener("DOMContentLoaded", () => {
 			li.remove();
 		});
 
-		dataToShow.map(row => {
+		dataToShow.map(item => {
 
 			table.insertAdjacentHTML("beforeend", `
 				<div class="row1 row_body">
-					<div class="col1">${row.position}</div>
-					<div class="col2">${row.location}</div>
-					<div class="col3">${row.price}</div>
+					<div class="col1">${item.name.first} ${item.name.last}</div>
+					<div class="col2">${item.location.city}</div>
+					<div class="col3">${item.phone}</div>
 				</div>
 			`);
 		});
@@ -204,6 +242,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 
 	changePage(currentPage);
+
 
 
 	/*====================*/

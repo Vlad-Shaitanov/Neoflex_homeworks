@@ -250,6 +250,9 @@ a {
 	justify-self: stretch;
 	margin-bottom: 20px;
 	padding: 0 15px 0;
+	max-width: 100%;
+	flex-wrap: wrap;
+	margin-top: 20px;
 }
 
 .card_item {
@@ -270,8 +273,8 @@ a {
 
 	&_date {
 		position: absolute;
-		right: 5%;
-		top: 10%;
+		right: 40%;
+		top: 2%;
 		font-size: 12px;
 		font-weight: 500;
 	}
@@ -397,13 +400,14 @@ a {
 	// display: grid;
 	// grid-template-columns: repeat(12, 1fr);
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
 	margin-bottom: 50px;
 
 	.cards_wrap {
-		max-width: 50%;
+		max-width: 100%;
 
 		button {
 			cursor: pointer;
@@ -418,13 +422,10 @@ a {
 			}
 		}
 	}
-	// .cards {
-	// 	max-width: 50%;
-
-	// }
 
 	.card_item {
 		width: 220px;
+		margin-top: 20px;
 	}
 
 	.table_wrap {
@@ -507,6 +508,10 @@ a {
 		&:last-child {
 			border-bottom: 1px solid $main-color;
 		}
+	}
+
+	.row_body {
+		grid-template-columns: inherit;
 	}
 }
 
@@ -682,11 +687,6 @@ a {
 	}
 
 	.card_body {
-		&_date {
-			right: 5%;
-			top: 15%;
-		}
-
 		&_img {
 			right: 5%;
 			top: -9%;

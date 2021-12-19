@@ -258,6 +258,10 @@ a:hover {
   justify-self: stretch;
   margin-bottom: 20px;
   padding: 0 15px 0;
+  max-width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .card_item {
@@ -281,8 +285,8 @@ a:hover {
 
 .card_body_date {
   position: absolute;
-  right: 5%;
-  top: 10%;
+  right: 40%;
+  top: 2%;
   font-size: 12px;
   font-weight: 500;
 }
@@ -444,6 +448,10 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-pack: justify;
@@ -454,7 +462,7 @@ a:hover {
 }
 
 .content_row3 .cards_wrap {
-  max-width: 50%;
+  max-width: 100%;
 }
 
 .content_row3 .cards_wrap button {
@@ -473,6 +481,7 @@ a:hover {
 
 .content_row3 .card_item {
   width: 220px;
+  margin-top: 20px;
 }
 
 .content_row3 .table_wrap {
@@ -533,6 +542,11 @@ a:hover {
 
 .table_grid .row1:last-child {
   border-bottom: 1px solid #2f80ed;
+}
+
+.table_grid .row_body {
+  -ms-grid-columns: inherit;
+      grid-template-columns: inherit;
 }
 
 /*=================*/
@@ -681,10 +695,6 @@ a:hover {
   .content_row3 .card_item {
     min-width: 220px;
     width: 100%;
-  }
-  .card_body_date {
-    right: 5%;
-    top: 15%;
   }
   .card_body_img {
     right: 5%;
