@@ -1,0 +1,47 @@
+header {
+	display: flex;
+	height: 80px;
+	background-color: #56ccf2;
+
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+}
+
+.client {
+	display: flex;
+
+	& span {
+		color: #fff;
+		padding-right: 20px;
+		vertical-align: middle;
+		align-self: center;
+	}
+
+	img {
+		width: 50px;
+		border-radius: 50%;
+	}
+}
+
+.logo {
+	color: #fff;
+	font-size: 24px;
+}
+
+.hamburger {
+	display: none;
+}
+
+@media (min-width: 1280px) {
+	header {
+		& .container {
+			padding: 0;
+		}
+	}
+}
