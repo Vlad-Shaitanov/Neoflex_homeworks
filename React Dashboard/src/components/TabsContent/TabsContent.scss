@@ -1,0 +1,10 @@
+$main-color: #2f80ed;
+
+.tabs_content {
+	display: flex;
+	justify-content: center;
+	background-color: $main-color;
+	color: #fff;
+	font-size: 25px;
+	padding: 10px 0;
+}

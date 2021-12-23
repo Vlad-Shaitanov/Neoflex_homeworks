@@ -1,6 +1,44 @@
+$main-color: #2f80ed;
 .tabs_wrapper {
 	background-color: #2d9cdb;
 	.container {
 		margin: 0 auto;
+	}
+}
+
+.tabs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin: 0 auto;
+	align-items: baseline; /*От прыжков в табах*/
+}
+
+.tabs_item {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	min-height: 120px;
+	cursor: pointer;
+
+	& .fas {
+		font-size: 50px;
+		color: #fff;
+	}
+
+	& span {
+		color: #fff;
+	}
+
+	&:hover {
+		background-color: $main-color;
+		border-bottom: 8px solid #fff;
+	}
+}
+
+.tabs_item {
+	&.active {
+		background-color: $main-color;
+		border-bottom: 8px solid #fff;
 	}
 }

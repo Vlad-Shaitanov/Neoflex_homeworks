@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
+import { TabsContent } from "../../components/TabsContent/TabsContent";
+import "../../components/TabsContent/TabsContent.scss";
 
 export const Tabs = () => {
 
@@ -9,23 +11,37 @@ export const Tabs = () => {
 		{ title: 'Inactive tab', content: 'fa-briefcase' },
 	];
 
+	const [activeTab, setActiveTab] = useState(null);
+
+	const openTab = (ind) => {
+
+		setActiveTab(ind);
+	};
+
 	return (
 		<div className="tabs_wrapper">
 			<div className="container">
 				<div className="tabs">
-					<div className="tabs_item active">
-						<i className={classnames("fas", `${tabInfo[0].content}`)}></i>
-						<span>{tabInfo[0].title}</span>
-					</div>
-					<div className="tabs_item">
-						<i className={classnames("fas", `${tabInfo[1].content}`)}></i>
-						<span>{tabInfo[1].title}</span>
-					</div>
-					<div className="tabs_item">
-						<i className={classnames("fas", `${tabInfo[2].content}`)}></i>
-						<span>{tabInfo[2].title}</span>
-					</div>
+					{tabInfo.map((item, ind) => {
+						return (
+							<div
+								className={classnames("tabs_item",
+									`${ind === 0 && activeTab === null ?
+										'active' :
+										ind === activeTab ? 'active' : ''}`)}
+								key={ind}
+								onClick={() => openTab(ind)}
+							>
+								<i className={classnames("fas", `${item.content}`)}></i>
+								<span>{activeTab === null ?
+									item.title :
+									ind === activeTab ? 'Active tab' : 'Inactive tab'}
+								</span>
+							</div>
+						);
+					})}
 				</div>
+				<TabsContent tab={activeTab} />
 			</div>
 		</div >
 	);
