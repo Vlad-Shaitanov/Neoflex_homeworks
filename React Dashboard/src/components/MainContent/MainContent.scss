@@ -1,0 +1,19 @@
+.content_wrap {
+	padding-top: 60px;
+
+	.container {
+		max-width: 1280px;
+		margin: 0 auto;
+	}
+}
+
+.content_row3 {
+	// display: grid;
+	// grid-template-columns: repeat(12, 1fr);
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 50px;
+}

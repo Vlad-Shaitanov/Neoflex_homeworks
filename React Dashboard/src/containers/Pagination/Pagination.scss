@@ -1,0 +1,102 @@
+$main-color: #2f80ed;
+.pagination {
+	margin-bottom: 40px;
+}
+
+.pagination_list {
+	display: flex;
+	justify-content: center;
+	ul {
+		display: flex;
+
+		li {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			width: 30px;
+			height: 30px;
+			border: 1px solid $main-color;
+			color: $main-color;
+			cursor: pointer;
+
+			&:not(:last-child) {
+				margin-right: 15px;
+			}
+			&.pagination_selected {
+				background-color: $main-color;
+				color: #fff;
+			}
+			&:hover {
+				box-shadow: 0 0 10px $main-color;
+			}
+
+			.disabled {
+				pointer-events: none;
+
+				&:before {
+					border-right: 0.12rem solid rgba(0, 0, 0, 0.43);
+					border-top: 0.12rem solid rgba(0, 0, 0, 0.43);
+				}
+
+				&:hover {
+					background-color: transparent;
+					cursor: default;
+				}
+			}
+		}
+	}
+}
+
+.arrow_left,
+.arrow_right {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: $main-color;
+	color: #fff;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: 0 0 10px $main-color;
+	}
+}
+
+.arrow_left {
+	margin-right: 30px;
+
+	&.disabled {
+		pointer-events: none;
+		opacity: 0.5;
+
+		&:hover {
+			background-color: transparent;
+			cursor: default;
+		}
+	}
+}
+
+.arrow_right {
+	margin-left: 30px;
+
+	&.disabled {
+		pointer-events: none;
+		opacity: 0.5;
+
+		&:hover {
+			background-color: transparent;
+			cursor: default;
+		}
+	}
+}
+
+#select {
+	width: 60px;
+	margin-bottom: 50px;
+	padding: 5px;
+	border: 1px solid $main-color;
+	color: $main-color;
+}
