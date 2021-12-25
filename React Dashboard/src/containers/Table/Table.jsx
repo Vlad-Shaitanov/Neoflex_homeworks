@@ -5,13 +5,16 @@ import { TableItem } from "../../components/TableItem/TableItem";
 import "../../components/TableItem/TableItem.scss";
 import { Pagination } from "../Pagination/Pagination";
 import "../Pagination/Pagination.scss";
+import { Select } from "../../components/Select/Select";
+import "../../components/Select/Select.scss";
 
 export const Table = () => {
 	const dispatch = useDispatch();
 	const usersData = useSelector((state) => state.usersInfo);//Все заявки
 	const currentPage = useSelector((state) => state.currentPage);//Текущая страница
 
-	let pageSize = 10;//Сколько записей на странице
+	// let pageSize = 10;//Сколько записей на странице
+	let pageSize = useSelector((state) => state.pageSize);
 
 	const currentTableData = useMemo(() => {
 		const firstPageIndex = (currentPage - 1) * pageSize;
@@ -63,6 +66,7 @@ export const Table = () => {
 						/>
 					</div>
 				</div>
+				<Select />
 			</div>
 		</div>
 	);
