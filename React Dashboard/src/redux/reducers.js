@@ -1,13 +1,15 @@
 import {
 	GET_USERS_INFO,
 	SET_CURRENT_PAGE,
-	SET_PAGE_SIZE
+	SET_PAGE_SIZE,
+	GET_CARDS
 } from "./types";
 
 const initialState = {
 	usersInfo: [],
 	currentPage: 1,
-	pageSize: 10
+	pageSize: 10,
+	cards: []
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -20,6 +22,9 @@ export const rootReducer = (state = initialState, action) => {
 
 		case SET_PAGE_SIZE:
 			return { ...state, pageSize: action.payload };
+
+		case GET_CARDS:
+			return { ...state, cards: [...state.cards, ...action.payload] };
 
 		default:
 			return state;

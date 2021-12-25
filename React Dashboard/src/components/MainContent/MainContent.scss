@@ -1,3 +1,4 @@
+$main-color: #2f80ed;
 .content_wrap {
 	padding-top: 60px;
 
@@ -8,12 +9,38 @@
 }
 
 .content_row3 {
-	// display: grid;
-	// grid-template-columns: repeat(12, 1fr);
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
 	margin-bottom: 50px;
+
+	.cards_wrap {
+		max-width: 100%;
+		margin-bottom: 50px;
+
+		button {
+			cursor: pointer;
+			padding: 15px;
+			background-color: $main-color;
+			color: #fff;
+			margin: 0 10px 10px;
+			text-transform: uppercase;
+
+			&:hover {
+				box-shadow: 0 0 10px $main-color;
+			}
+		}
+	}
+
+	.card_item {
+		width: 220px;
+		margin-top: 20px;
+	}
+
+	.table_wrap {
+		width: 50%;
+		min-width: 350px;
+	}
 }

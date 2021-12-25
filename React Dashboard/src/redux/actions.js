@@ -1,7 +1,8 @@
 import {
 	GET_USERS_INFO,
 	SET_CURRENT_PAGE,
-	SET_PAGE_SIZE
+	SET_PAGE_SIZE,
+	GET_CARDS
 } from "./types";
 
 export const getUsersAction = (payload) => (dispatch) => {
@@ -23,4 +24,11 @@ export const setPageSizeAction = (payload) => {
 		type: SET_PAGE_SIZE,
 		payload
 	};
+};
+
+export const getCardsAction = (payload) => (dispatch) => {
+	dispatch({
+		type: GET_CARDS,
+		payload
+	});
 };
