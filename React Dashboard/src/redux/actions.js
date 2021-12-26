@@ -3,7 +3,8 @@ import {
 	SET_CURRENT_PAGE,
 	SET_PAGE_SIZE,
 	GET_CARDS,
-	UPDATE_LIKES
+	UPDATE_LIKES,
+	SET_ACTIVE_TAB
 } from "./types";
 
 export const getUsersAction = (payload) => (dispatch) => {
@@ -37,6 +38,13 @@ export const getCardsAction = (payload) => (dispatch) => {
 export const updateLikes = (payload) => {
 	return {
 		type: UPDATE_LIKES,
+		payload
+	}
+};
+
+export const setActiveTabAction = (payload) => {
+	return {
+		type: SET_ACTIVE_TAB,
 		payload
 	}
 };

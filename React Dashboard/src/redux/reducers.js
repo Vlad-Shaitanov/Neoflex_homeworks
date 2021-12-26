@@ -3,7 +3,8 @@ import {
 	SET_CURRENT_PAGE,
 	SET_PAGE_SIZE,
 	GET_CARDS,
-	UPDATE_LIKES
+	UPDATE_LIKES,
+	SET_ACTIVE_TAB
 } from "./types";
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
 	currentPage: 1,//Текущая страница
 	pageSize: 10,//Количество строк к отображению
 	cards: [],//Контент для карточек
-	likes: []//Лайкнутые посты
+	likes: [],//Лайкнутые посты
+	activeTab: null,//Активный таб
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -43,6 +45,8 @@ export const rootReducer = (state = initialState, action) => {
 				};
 			}
 
+		case SET_ACTIVE_TAB:
+			return { ...state, activeTab: action.payload };
 		default:
 			return state;
 	}

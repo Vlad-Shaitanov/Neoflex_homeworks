@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import classnames from "classnames";
+import { setActiveTabAction } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 import { TabsContent } from "../../components/TabsContent/TabsContent";
 import "../../components/TabsContent/TabsContent.scss";
+
 
 export const Tabs = () => {
 
@@ -11,11 +14,13 @@ export const Tabs = () => {
 		{ title: 'Inactive tab', content: 'fa-briefcase' },
 	];
 
-	const [activeTab, setActiveTab] = useState(null);
+	const dispatch = useDispatch();
+	const activeTab = useSelector((state) => state.activeTab);
+
 
 	const openTab = (ind) => {
 
-		setActiveTab(ind);
+		dispatch(setActiveTabAction(ind));
 	};
 
 	return (
