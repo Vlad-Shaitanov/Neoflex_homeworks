@@ -2,14 +2,16 @@ import {
 	GET_USERS_INFO,
 	SET_CURRENT_PAGE,
 	SET_PAGE_SIZE,
-	GET_CARDS
+	GET_CARDS,
+	UPDATE_LIKES
 } from "./types";
 
 const initialState = {
-	usersInfo: [],
-	currentPage: 1,
-	pageSize: 10,
-	cards: []
+	usersInfo: [],//Список пользователей
+	currentPage: 1,//Текущая страница
+	pageSize: 10,//Количество строк к отображению
+	cards: [],//Контент для карточек
+	likes: []//Лайкнутые посты
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -25,6 +27,21 @@ export const rootReducer = (state = initialState, action) => {
 
 		case GET_CARDS:
 			return { ...state, cards: [...state.cards, ...action.payload] };
+
+		case UPDATE_LIKES:
+			const like = action.payload;
+			const itemIndex = state.likes.findIndex((item) => item === like);
+
+			if (itemIndex === -1) {
+
+				return { ...state, likes: [...state.likes, like] };
+			} else {
+
+				return {
+					...state,
+					likes: [...state.likes.slice(0, itemIndex), ...state.likes.slice(itemIndex + 1)]
+				};
+			}
 
 		default:
 			return state;

@@ -2,7 +2,8 @@ import {
 	GET_USERS_INFO,
 	SET_CURRENT_PAGE,
 	SET_PAGE_SIZE,
-	GET_CARDS
+	GET_CARDS,
+	UPDATE_LIKES
 } from "./types";
 
 export const getUsersAction = (payload) => (dispatch) => {
@@ -31,4 +32,11 @@ export const getCardsAction = (payload) => (dispatch) => {
 		type: GET_CARDS,
 		payload
 	});
+};
+
+export const updateLikes = (payload) => {
+	return {
+		type: UPDATE_LIKES,
+		payload
+	}
 };
