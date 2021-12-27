@@ -30,3 +30,16 @@ $main-color: #2f80ed;
 	flex-wrap: wrap;
 	margin-top: 20px;
 }
+
+@media (max-width: 800px) {
+	.content_row3 {
+		.cards_wrap {
+			max-width: 100%;
+		}
+		.cards {
+			max-width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+		}
+	}
+}

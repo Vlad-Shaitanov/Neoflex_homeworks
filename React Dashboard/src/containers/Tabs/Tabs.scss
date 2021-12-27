@@ -42,3 +42,19 @@ $main-color: #2f80ed;
 		border-bottom: 8px solid #fff;
 	}
 }
+
+@media (max-width: 600px) {
+	.tabs_item {
+		& .fas {
+			font-size: 30px;
+		}
+	}
+}
+
+@media (max-width: 370px) {
+	.tabs_item {
+		span {
+			display: none;
+		}
+	}
+}

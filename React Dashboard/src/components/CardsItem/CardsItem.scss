@@ -71,3 +71,27 @@ $main-color: #2f80ed;
 		}
 	}
 }
+
+@media (max-width: 800px) {
+	.content_row3 {
+		.card_item {
+			margin-top: 20px;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.content_row3 {
+	}
+	.card_item {
+		min-width: 220px;
+		width: 100%;
+	}
+
+	.card_body {
+		&_img {
+			right: 5%;
+			top: -9%;
+		}
+	}
+}
